@@ -161,8 +161,8 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "\nTitle: " + title + "\nLanguage: " + language + "\nYear: " + releaseYear + "\nRating: " + rating
-				+ "\nDescription: " + description + "\nCast: " + printActorList() + "\n";
+		return "\n\tTitle: " + title + "\n\tLanguage: " + language + "\n\tYear: " + releaseYear + "\n\tRating: " + rating
+				+ "\n\tDescription: " + description + "\n\tCast: " + printActorList() + "\n";
 	}
 
 	private String printActorList() {

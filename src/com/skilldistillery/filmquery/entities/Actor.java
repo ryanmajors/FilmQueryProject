@@ -8,7 +8,6 @@ public class Actor {
 	private String firstName;
 	private String lastName;
 	private List<Film> films;
-	private List<Actor> actors;
 
 	public Actor() {
 
@@ -83,19 +82,5 @@ public class Actor {
 	public String toString() {
 		return firstName + " " + lastName;
 	}
-	
-	public String printActorList() {
-		String result = "";
-		int count = 0;
-		for (Actor actor : actors) {
-			count++;
-			if (count == actors.size()) {
-				result += actor + ".";
-				break;
-			}
-			result += actor + ", ";
-		}
-		return result;
-	}
-	
+
 }

@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Film {
 	private int id;
 	private String title;
+	private String language;
 	private String description;
 	private int releaseYear;
 	private int rentalDuration;
@@ -20,11 +21,13 @@ public class Film {
 
 	}
 
-	public Film(int id, String title, String description, int releaseYear, int rentalDuration, double rentalRate,
-			int length, double replacementCost, String rating, String specialFeatures, List<Actor> actors) {
+	public Film(int id, String title, String language, String description, int releaseYear, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
+			List<Actor> actors) {
 		super();
 		this.id = id;
 		this.title = title;
+		this.language = language;
 		this.description = description;
 		this.releaseYear = releaseYear;
 		this.rentalDuration = rentalDuration;
@@ -50,6 +53,14 @@ public class Film {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	public String getDescription() {
@@ -126,7 +137,7 @@ public class Film {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(actors, description, id, length, rating, releaseYear, rentalDuration, rentalRate,
+		return Objects.hash(actors, description, id, language, length, rating, releaseYear, rentalDuration, rentalRate,
 				replacementCost, specialFeatures, title);
 	}
 
@@ -140,7 +151,8 @@ public class Film {
 			return false;
 		Film other = (Film) obj;
 		return Objects.equals(actors, other.actors) && Objects.equals(description, other.description) && id == other.id
-				&& length == other.length && Objects.equals(rating, other.rating) && releaseYear == other.releaseYear
+				&& Objects.equals(language, other.language) && length == other.length
+				&& Objects.equals(rating, other.rating) && releaseYear == other.releaseYear
 				&& rentalDuration == other.rentalDuration
 				&& Double.doubleToLongBits(rentalRate) == Double.doubleToLongBits(other.rentalRate)
 				&& Double.doubleToLongBits(replacementCost) == Double.doubleToLongBits(other.replacementCost)
@@ -149,11 +161,10 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "\nTitle: " + title + "\nDescription: " + description + "\nReleased: " + releaseYear
-				+ "\nRental cost: $" + rentalRate + "\nMovie length: " + length
-				+ " minutes\nRating: " + rating + "\nActors: " + printActorList() + "\n";
+		return "\nTitle: " + title + "\nLanguage: " + language + "\nYear: " + releaseYear + "\nRating: " + rating
+				+ "\nDescription: " + description + "\nCast: " + printActorList() + "\n";
 	}
-	
+
 	private String printActorList() {
 		String result = "";
 		int count = 0;

@@ -7,7 +7,7 @@ public class Menus {
 	public void startMenu(Scanner sc) {
 		System.out.println("What would you like to do?\n"
 				+ "1. Look up a film by it's id\n"
-				+ "2. Look up an actor or actress by their id\n"
+//				+ "2. Look up an actor or actress by their id\n"
 				+ "3. Look up a film by a search keyword\n"
 				+ "4. Exit the application");
 	}

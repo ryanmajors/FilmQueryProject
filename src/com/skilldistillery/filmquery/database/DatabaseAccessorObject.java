@@ -91,8 +91,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	@Override
 	public Film findFilmById(int filmId) {
 		Film film = null;
-		String sql = "SELECT id, title, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features "
-				+ "FROM film WHERE id = ?";
+		String sql = "SELECT film.id, language.name, film.language_id, title, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features "
+				+ "FROM film "
+				+ "JOIN language ON language.id = film.language_id "
+				+ "WHERE film.id = ?";
 
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
@@ -101,8 +103,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			ResultSet filmResult = stmt.executeQuery();
 			if (filmResult.next()) {
 				film = new Film();
-				film.setId(filmResult.getInt("id"));
+				film.setId(filmResult.getInt("film.id"));
 				film.setTitle(filmResult.getString("title"));
+				film.setLanguage(filmResult.getString("language.name"));
 				film.setDescription(filmResult.getString("description"));
 				film.setReleaseYear(filmResult.getInt("release_year"));
 				film.setRentalDuration(filmResult.getInt("rental_duration"));
@@ -160,8 +163,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	public List<Film> findFilmBySearchKeyword(String keyword) {
 		List<Film> filmList = new ArrayList<>();
 		Film film = null;
-		String sql = "SELECT film.id, film.title, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features \n"
-				+ "FROM film WHERE title LIKE ? OR description LIKE ?";
+		String sql = "SELECT film.id, language.name, film.language_id, title, description, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features "
+				+ "FROM film "
+				+ "JOIN language ON language.id = film.language_id "
+				+ "WHERE title LIKE ? OR description LIKE ?";
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -173,6 +178,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film = new Film();
 				film.setId(filmResult.getInt("film.id"));
 				film.setTitle(filmResult.getString("film.title"));
+				film.setLanguage(filmResult.getString("language.name"));
 				film.setDescription(filmResult.getString("description"));
 				film.setReleaseYear(filmResult.getInt("release_year"));
 				film.setRentalDuration(filmResult.getInt("rental_duration"));

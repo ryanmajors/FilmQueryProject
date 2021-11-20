@@ -149,10 +149,22 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
-				+ ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate + ", length=" + length
-				+ ", replacementCost=" + replacementCost + ", rating=" + rating + ", specialFeatures=" + specialFeatures
-				+ ", actors=" + actors + "]";
+		return "\nTitle: " + title + "\nDescription: " + description + "\nReleased: " + releaseYear
+				+ "\nRental cost: $" + rentalRate + "\nMovie length: " + length
+				+ " minutes\nRating: " + rating + "\nActors: " + printActorList() + "\n";
 	}
-
+	
+	private String printActorList() {
+		String result = "";
+		int count = 0;
+		for (Actor actor : actors) {
+			count++;
+			if (count == actors.size()) {
+				result += actor + ".";
+				break;
+			}
+			result += actor + ", ";
+		}
+		return result;
+	}
 }
